@@ -72,4 +72,14 @@ class RememberingAccessDecisionManager implements AccessDecisionManagerInterface
 
         return $this->delegate->supportsClass($class);
     }
+    
+    public function setVoters(array $voters)
+    {
+        if (!method_exists($this->delegate, 'setVoters')) {
+            return;
+        }
+
+        $this->voters = $voters;
+        $this->delegate->setVoters($voters);
+    }
 }
